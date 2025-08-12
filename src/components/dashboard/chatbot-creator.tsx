@@ -208,7 +208,7 @@ export function ChatbotCreator({ onChatbotCreated }: ChatbotCreatorProps) {
             {/* Personality & Goals */}
             <div className="border-t border-slate-200 dark:border-slate-700 pt-8">
               <div className="flex items-center gap-3 mb-6">
-                <div className="p-2 rounded-lg bg-gradient-to-r from-purple-500 to-pink-600">
+                <div className="p-2 rounded-lg bg-gradient-to-r from-purple-500 to-violet-600">
                   <Wand2 className="w-5 h-5 text-white" />
                 </div>
                 <div>

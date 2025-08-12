@@ -410,7 +410,7 @@ export function DemoShowcase() {
                   transition={{ delay: 0.5 + index * 0.1 }}
                   className="flex items-center gap-3"
                 >
-                  <Star className="w-4 h-4 text-amber-500" />
+                  <Star className="w-4 h-4 text-blue-500" />
                   <span className="text-sm text-slate-700 dark:text-slate-300">
                     {benefit}
                   </span>

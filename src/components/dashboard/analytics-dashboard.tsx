@@ -122,7 +122,7 @@ export function AnalyticsDashboard() {
             change: '+0.3',
             trend: 'up',
             icon: Star,
-            color: 'from-amber-500 to-orange-500'
+            color: 'from-emerald-500 to-teal-500'
           },
           {
             title: 'Response Time',
@@ -226,7 +226,7 @@ export function AnalyticsDashboard() {
                   <span className="text-slate-600 dark:text-slate-400">
                     {formatNumber(bot.conversations)} conversations
                   </span>
-                  <span className="text-amber-600 dark:text-amber-400">
+                  <span className="text-emerald-600 dark:text-emerald-400">
                     ⭐ {bot.satisfaction > 0 ? bot.satisfaction.toFixed(1) : 'N/A'}
                   </span>
                 </div>
@@ -263,7 +263,7 @@ export function AnalyticsDashboard() {
           className="glass-card p-6"
         >
           <div className="flex items-center gap-3 mb-6">
-            <div className="p-2 rounded-lg bg-gradient-to-r from-purple-500 to-pink-600">
+            <div className="p-2 rounded-lg bg-gradient-to-r from-purple-500 to-violet-600">
               <Globe className="w-5 h-5 text-white" />
             </div>
             <div>

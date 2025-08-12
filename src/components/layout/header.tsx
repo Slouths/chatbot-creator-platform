@@ -4,11 +4,13 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
-import { Menu, X, Bot, Sparkles } from 'lucide-react'
+import { useUser, UserButton } from '@clerk/nextjs'
+import { Menu, X, Bot, Sparkles, LayoutDashboard } from 'lucide-react'
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const { isSignedIn, user } = useUser()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -77,34 +79,70 @@ export function Header() {
                 </Link>
               </motion.div>
             ))}
+            {isSignedIn && (
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: navItems.length * 0.1 }}
+              >
+                <Link
+                  href="/dashboard"
+                  className="relative group px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-all duration-300 flex items-center gap-2"
+                >
+                  <LayoutDashboard className="w-4 h-4" />
+                  <span className="relative z-10">Dashboard</span>
+                  <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-indigo-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </Link>
+              </motion.div>
+            )}
           </nav>
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-4">
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Button variant="ghost" asChild className="glass-button border-0 hover:bg-white/80 dark:hover:bg-slate-800/80">
-                <Link href="/sign-in">Sign In</Link>
-              </Button>
-            </motion.div>
-            
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Button 
-                asChild 
-                className="glass-button relative overflow-hidden group bg-gradient-to-r from-indigo-500 to-purple-600 text-white border-0 hover:from-indigo-600 hover:to-purple-700"
+            {isSignedIn ? (
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <Link href="/sign-up">
-                  <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <Sparkles className="w-4 h-4 mr-2" />
-                  <span className="relative z-10">Get Started</span>
-                </Link>
-              </Button>
-            </motion.div>
+                <div className="glass-card p-1 rounded-full">
+                  <UserButton 
+                    afterSignOutUrl="/"
+                    appearance={{
+                      elements: {
+                        avatarBox: "w-8 h-8 rounded-full"
+                      }
+                    }}
+                  />
+                </div>
+              </motion.div>
+            ) : (
+              <>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Button variant="ghost" asChild className="glass-button border-0 text-slate-700 dark:text-slate-300 hover:bg-white/80 dark:hover:bg-slate-800/80 hover:text-slate-900 dark:hover:text-slate-100">
+                    <Link href="/sign-in">Sign In</Link>
+                  </Button>
+                </motion.div>
+                
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Button 
+                    asChild 
+                    className="glass-button relative overflow-hidden group bg-gradient-to-r from-indigo-500 to-purple-600 text-white border-0 hover:from-indigo-600 hover:to-purple-700"
+                  >
+                    <Link href="/sign-up">
+                      <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <Sparkles className="w-4 h-4 mr-2" />
+                      <span className="relative z-10">Get Started</span>
+                    </Link>
+                  </Button>
+                </motion.div>
+              </>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -168,24 +206,58 @@ export function Header() {
                   </motion.div>
                 ))}
                 
-                <div className="pt-4 border-t border-white/10 dark:border-slate-700/30 flex flex-col gap-3 px-4">
-                  <Button 
-                    variant="ghost" 
-                    asChild 
-                    className="glass-button w-full justify-center border-0 hover:bg-white/80 dark:hover:bg-slate-800/80"
+                {isSignedIn && (
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: navItems.length * 0.1 }}
                   >
-                    <Link href="/sign-in">Sign In</Link>
-                  </Button>
-                  
-                  <Button 
-                    asChild 
-                    className="glass-button w-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white border-0 justify-center"
-                  >
-                    <Link href="/sign-up">
-                      <Sparkles className="w-4 h-4 mr-2" />
-                      Get Started
+                    <Link
+                      href="/dashboard"
+                      className="flex items-center gap-2 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-white/50 dark:hover:bg-slate-800/50 transition-all duration-300"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <LayoutDashboard className="w-4 h-4" />
+                      Dashboard
                     </Link>
-                  </Button>
+                  </motion.div>
+                )}
+                
+                <div className="pt-4 border-t border-white/10 dark:border-slate-700/30 flex flex-col gap-3 px-4">
+                  {isSignedIn ? (
+                    <div className="flex justify-center">
+                      <div className="glass-card p-1 rounded-full">
+                        <UserButton 
+                          afterSignOutUrl="/"
+                          appearance={{
+                            elements: {
+                              avatarBox: "w-8 h-8 rounded-full"
+                            }
+                          }}
+                        />
+                      </div>
+                    </div>
+                  ) : (
+                    <>
+                      <Button 
+                        variant="ghost" 
+                        asChild 
+                        className="glass-button w-full justify-center border-0 text-slate-700 dark:text-slate-300 hover:bg-white/80 dark:hover:bg-slate-800/80 hover:text-slate-900 dark:hover:text-slate-100"
+                      >
+                        <Link href="/sign-in">Sign In</Link>
+                      </Button>
+                      
+                      <Button 
+                        asChild 
+                        className="glass-button w-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white border-0 justify-center"
+                      >
+                        <Link href="/sign-up">
+                          <Sparkles className="w-4 h-4 mr-2" />
+                          Get Started
+                        </Link>
+                      </Button>
+                    </>
+                  )}
                 </div>
               </nav>
             </motion.div>

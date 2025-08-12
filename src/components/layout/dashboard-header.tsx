@@ -58,8 +58,9 @@ export function DashboardHeader() {
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="h-16 flex items-center justify-between">
-          {/* Logo */}
+        <div className="h-16 flex items-center">
+          {/* Left: Logo */}
+          <div className="flex-shrink-0">
           <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -79,9 +80,11 @@ export function DashboardHeader() {
               </span>
             </Link>
           </motion.div>
+          </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-2">
+          {/* Center: Desktop Navigation */}
+          <div className="flex-1 flex justify-center">
+            <nav className="hidden md:flex items-center gap-2">
             {navItems.map((item, index) => {
               const Icon = item.icon
               const active = isActive(item.href)
@@ -117,10 +120,11 @@ export function DashboardHeader() {
                 </motion.div>
               )
             })}
-          </nav>
+            </nav>
+          </div>
 
-          {/* Desktop User Menu */}
-          <div className="hidden md:flex items-center gap-4">
+          {/* Right: Desktop User Menu */}
+          <div className="hidden md:flex items-center gap-4 flex-shrink-0">
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -137,16 +141,19 @@ export function DashboardHeader() {
             
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="glass-card p-1 rounded-full"
+              className="relative group"
             >
-              <UserButton 
-                afterSignOutUrl="/"
-                appearance={{
-                  elements: {
-                    avatarBox: "w-8 h-8 rounded-full"
-                  }
-                }}
-              />
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full blur opacity-60 group-hover:opacity-80 transition-opacity" />
+              <div className="relative glass-card p-2 rounded-full border-2 border-indigo-500/20 hover:border-indigo-500/40 transition-colors">
+                <UserButton 
+                  afterSignOutUrl="/"
+                  appearance={{
+                    elements: {
+                      avatarBox: "w-8 h-8 rounded-full ring-2 ring-white/50"
+                    }
+                  }}
+                />
+              </div>
             </motion.div>
           </div>
 
@@ -230,16 +237,19 @@ export function DashboardHeader() {
                   </Button>
                   
                   <div className="flex justify-center">
-                    <div className="glass-card p-1 rounded-full">
-                      <UserButton 
-                        afterSignOutUrl="/"
-                        appearance={{
-                          elements: {
-                            avatarBox: "w-8 h-8 rounded-full"
-                          }
-                        }}
-                      />
-                    </div>
+                                <div className="relative group">
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full blur opacity-60 group-hover:opacity-80 transition-opacity" />
+              <div className="relative glass-card p-2 rounded-full border-2 border-indigo-500/20 hover:border-indigo-500/40 transition-colors">
+                <UserButton 
+                  afterSignOutUrl="/"
+                  appearance={{
+                    elements: {
+                      avatarBox: "w-8 h-8 rounded-full ring-2 ring-white/50"
+                    }
+                  }}
+                />
+              </div>
+            </div>
                   </div>
                 </div>
               </nav>

@@ -29,8 +29,8 @@ export function DashboardLayout() {
     { id: 'overview', label: 'Overview', icon: LayoutDashboard, color: 'from-blue-500 to-cyan-500' },
     { id: 'create', label: 'Create Bot', icon: Plus, color: 'from-green-500 to-emerald-500' },
     { id: 'manage', label: 'Manage Bots', icon: Settings, color: 'from-purple-500 to-violet-500' },
-    { id: 'analytics', label: 'Analytics', icon: BarChart3, color: 'from-orange-500 to-red-500' },
-    { id: 'demo', label: 'Examples', icon: Lightbulb, color: 'from-yellow-500 to-amber-500' }
+    { id: 'analytics', label: 'Analytics', icon: BarChart3, color: 'from-blue-500 to-cyan-500' },
+    { id: 'demo', label: 'Examples', icon: Lightbulb, color: 'from-emerald-500 to-teal-500' }
   ], [])
 
   const handleChatbotCreated = () => {
@@ -53,14 +53,17 @@ export function DashboardLayout() {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen" style={{ 
+      background: 'linear-gradient(135deg, rgb(248 250 252) 0%, rgb(239 246 255 / 0.3) 50%, rgb(238 242 255 / 0.2) 100%)',
+      backgroundAttachment: 'fixed'
+    }}>
       <DashboardHeader />
       
       {/* Main Content */}
       <div className="pt-20 pb-8">
         {/* Hero Section */}
         <div className="relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/80 via-white/40 to-purple-50/80 dark:from-slate-900/80 dark:via-slate-800/40 dark:to-indigo-900/80" />
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-50/80 via-blue-50/40 to-indigo-50/80 dark:from-slate-900/80 dark:via-blue-950/40 dark:to-indigo-950/80" />
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div className="text-center">
               <div className="inline-flex items-center gap-2 glass-card px-4 py-2 mb-6">
@@ -161,7 +164,7 @@ function OverviewTab({ onCreateNew }: { onCreateNew: () => void }) {
       value: '1.2s',
       change: '-0.3s',
       icon: Clock,
-      color: 'from-orange-500 to-red-500',
+      color: 'from-blue-500 to-cyan-500',
       description: 'Average speed'
     }
   ], [])
@@ -178,7 +181,7 @@ function OverviewTab({ onCreateNew }: { onCreateNew: () => void }) {
       title: 'View Examples',
       description: 'Explore real-world implementations',
       icon: Lightbulb,
-      color: 'from-amber-500 to-orange-500',
+      color: 'from-emerald-500 to-teal-500',
       action: () => {}
     },
     {
@@ -193,7 +196,7 @@ function OverviewTab({ onCreateNew }: { onCreateNew: () => void }) {
   const activities = useMemo(() => [
     { icon: '✅', text: 'Customer Support Bot handled 23 inquiries', time: '2h ago', color: 'text-green-500' },
     { icon: '📊', text: 'Sales Assistant qualified 5 new leads', time: '4h ago', color: 'text-blue-500' },
-    { icon: '⭐', text: 'Received 5-star rating from customer', time: '6h ago', color: 'text-amber-500' },
+    { icon: '⭐', text: 'Received 5-star rating from customer', time: '6h ago', color: 'text-blue-500' },
     { icon: '🎯', text: 'Conversion rate increased by 12%', time: '1d ago', color: 'text-purple-500' }
   ], [])
 

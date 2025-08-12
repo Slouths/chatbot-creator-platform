@@ -36,10 +36,14 @@ export function Testimonials() {
         <SlideUp>
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-6xl font-bold mb-6">
-              Loved by
-              <span className="gradient-text block">Thousands of Businesses</span>
+              <span className="bg-gradient-to-r from-slate-900 via-indigo-900 to-slate-900 dark:from-slate-100 dark:via-indigo-100 dark:to-slate-100 bg-clip-text text-transparent">
+                Loved by
+              </span>
+              <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600 dark:from-indigo-400 dark:via-purple-400 dark:to-indigo-400 bg-clip-text text-transparent block">
+                Thousands of Businesses
+              </span>
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto">
               See what our customers are saying about their experience with ChatBot Creator.
             </p>
           </div>
@@ -58,13 +62,13 @@ export function Testimonials() {
               <div className="glass p-6 rounded-2xl border border-white/20 shadow-xl h-full">
                 <div className="flex items-center gap-1 mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-500 fill-current" />
+                    <Star key={i} className="w-5 h-5 text-blue-500 fill-current" />
                   ))}
                 </div>
                 
-                <Quote className="w-8 h-8 text-muted-foreground mb-4" />
+                <Quote className="w-8 h-8 text-slate-500 dark:text-slate-400 mb-4" />
                 
-                <p className="text-foreground mb-6 leading-relaxed">
+                <p className="text-slate-800 dark:text-slate-200 mb-6 leading-relaxed">
                   "{testimonial.content}"
                 </p>
                 
@@ -73,8 +77,8 @@ export function Testimonials() {
                     {testimonial.name.split(' ').map(n => n[0]).join('')}
                   </div>
                   <div>
-                    <div className="font-semibold text-foreground">{testimonial.name}</div>
-                    <div className="text-sm text-muted-foreground">{testimonial.role}</div>
+                    <div className="font-semibold text-slate-900 dark:text-slate-100">{testimonial.name}</div>
+                    <div className="text-sm text-slate-600 dark:text-slate-400">{testimonial.role}</div>
                   </div>
                 </div>
               </div>

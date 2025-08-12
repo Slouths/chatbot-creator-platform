@@ -39,16 +39,16 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-border/50 bg-background/50 backdrop-blur-sm">
+    <footer className="border-t border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-6 gap-8">
           {/* Brand */}
           <div className="md:col-span-2">
-            <Link href="/" className="flex items-center gap-2 text-2xl font-bold gradient-text mb-4">
-              <Bot className="w-8 h-8" />
+            <Link href="/" className="flex items-center gap-2 text-2xl font-bold text-slate-900 dark:text-slate-100 mb-4">
+              <Bot className="w-8 h-8 text-indigo-600 dark:text-indigo-400" />
               ChatBot Creator
             </Link>
-            <p className="text-muted-foreground mb-6 max-w-sm">
+            <p className="text-slate-600 dark:text-slate-400 mb-6 max-w-sm">
               Build intelligent chatbots for your business with our no-code platform. 
               Transform customer service with AI-powered conversations.
             </p>
@@ -57,7 +57,7 @@ export function Footer() {
                 <a
                   key={social.name}
                   href={social.href}
-                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-colors"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -69,13 +69,13 @@ export function Footer() {
 
           {/* Links */}
           <div>
-            <h3 className="font-semibold mb-4">Product</h3>
+            <h3 className="font-semibold mb-4 text-slate-900 dark:text-slate-100">Product</h3>
             <ul className="space-y-2">
               {footerLinks.product.map((link) => (
                 <li key={link.name}>
                   <Link 
                     href={link.href}
-                    className="text-muted-foreground hover:text-foreground transition-colors"
+                    className="text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -85,13 +85,13 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold mb-4">Company</h3>
+            <h3 className="font-semibold mb-4 text-slate-900 dark:text-slate-100">Company</h3>
             <ul className="space-y-2">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
                   <Link 
                     href={link.href}
-                    className="text-muted-foreground hover:text-foreground transition-colors"
+                    className="text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -101,13 +101,13 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold mb-4">Resources</h3>
+            <h3 className="font-semibold mb-4 text-slate-900 dark:text-slate-100">Resources</h3>
             <ul className="space-y-2">
               {footerLinks.resources.map((link) => (
                 <li key={link.name}>
                   <Link 
                     href={link.href}
-                    className="text-muted-foreground hover:text-foreground transition-colors"
+                    className="text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -117,13 +117,13 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold mb-4">Legal</h3>
+            <h3 className="font-semibold mb-4 text-slate-900 dark:text-slate-100">Legal</h3>
             <ul className="space-y-2">
               {footerLinks.legal.map((link) => (
                 <li key={link.name}>
                   <Link 
                     href={link.href}
-                    className="text-muted-foreground hover:text-foreground transition-colors"
+                    className="text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -135,11 +135,11 @@ export function Footer() {
 
         <div className="border-t border-border/50 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-muted-foreground text-sm">
+            <p className="text-slate-600 dark:text-slate-400 text-sm">
               © 2024 ChatBot Creator. All rights reserved.
             </p>
-            <p className="text-muted-foreground text-sm">
-              Built with ❤️ using Next.js, Convex, and modern web technologies.
+            <p className="text-slate-600 dark:text-slate-400 text-sm">
+              Built with <span className="text-indigo-600 dark:text-indigo-400">♥</span> using Next.js, Convex, and modern web technologies.
             </p>
           </div>
         </div>

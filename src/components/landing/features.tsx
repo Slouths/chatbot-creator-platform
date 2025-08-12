@@ -24,7 +24,7 @@ const features = [
     icon: Zap,
     title: 'No-Code Builder',
     description: 'Visual drag-and-drop interface for creating complex conversation flows.',
-    color: 'from-amber-500 to-orange-500',
+    color: 'from-blue-500 to-cyan-500',
     stats: '5-min setup',
     benefit: 'Save 95% development time'
   },
@@ -40,7 +40,7 @@ const features = [
     icon: BarChart3,
     title: 'Real-Time Analytics',
     description: 'Comprehensive insights into conversations, user behavior, and bot performance.',
-    color: 'from-rose-500 to-pink-500',
+    color: 'from-emerald-500 to-teal-500',
     stats: 'Live insights',
     benefit: 'Improve conversion by 40%'
   },
@@ -56,7 +56,7 @@ const features = [
     icon: Smartphone,
     title: 'Mobile Optimized',
     description: 'Perfect experience across all devices with responsive design.',
-    color: 'from-pink-500 to-rose-500',
+    color: 'from-purple-500 to-violet-500',
     stats: 'All devices',
     benefit: 'Mobile-first experience'
   },

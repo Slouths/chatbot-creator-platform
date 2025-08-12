@@ -49,11 +49,11 @@ export function CTA() {
               </motion.div>
               
               <h2 className="text-4xl md:text-6xl font-bold mb-6">
-                Transform Your Customer Service
-                <span className="gradient-text block">Today</span>
+                <span className="text-slate-900 dark:text-slate-100">Transform Your Customer Service</span>
+                <span className="text-indigo-600 dark:text-indigo-400 block">Today</span>
               </h2>
               
-              <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+              <p className="text-xl text-slate-600 dark:text-slate-400 mb-8 max-w-2xl mx-auto">
                 Join thousands of businesses already using ChatBot Creator to provide 
                 exceptional customer experiences 24/7.
               </p>
@@ -76,7 +76,7 @@ export function CTA() {
                 </motion.div>
               </div>
               
-              <div className="flex flex-wrap justify-center items-center gap-8 text-sm text-muted-foreground mt-8">
+              <div className="flex flex-wrap justify-center items-center gap-8 text-sm text-slate-600 dark:text-slate-400 mt-8">
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                   14-day free trial

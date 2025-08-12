@@ -74,7 +74,7 @@ export function Hero() {
             <Button
               variant="outline"
               size="lg"
-              className="glass-button border-slate-200 dark:border-slate-700 hover:bg-white/50 dark:hover:bg-slate-800/50 px-8 py-4 text-lg"
+              className="glass-button border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-white/50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-slate-100 px-8 py-4 text-lg"
             >
               <Play className="w-5 h-5 mr-2" />
               Watch Demo
