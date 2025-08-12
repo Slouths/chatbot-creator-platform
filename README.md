@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Chatbot Creator Platform
 
-## Getting Started
+A modern, full-stack SaaS platform for creating and deploying AI-powered chatbots across multiple channels including WhatsApp, Instagram, Facebook Messenger, and websites.
 
-First, run the development server:
+## ✨ Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **No-Code Bot Builder**: Visual drag-and-drop interface for creating conversation flows
+- **Multi-Platform Deployment**: Deploy to WhatsApp, Instagram, Facebook Messenger, and websites
+- **AI Integration**: Support for OpenAI GPT-4, Anthropic Claude, and custom models
+- **Real-time Analytics**: Comprehensive dashboard with conversation metrics and insights
+- **Team Collaboration**: Organization-based user management with role-based access
+- **Enterprise Security**: SOC 2 compliant with end-to-end encryption
+- **Modern UI**: Apple-inspired design with smooth animations and dark mode
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Node.js 18+ 
+- npm or yarn
+- Clerk account (for authentication)
+- Convex account (for backend)
+
+### Installation
+
+1. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+2. **Set up environment variables**
+   ```bash
+   cp .env.example .env.local
+   ```
+   Fill in your API keys and configuration values.
+
+3. **Initialize shadcn/ui**
+   ```bash
+   npx shadcn@latest init --defaults
+   npx shadcn@latest add button input card dialog dropdown-menu form label select textarea toast progress skeleton
+   ```
+
+4. **Initialize Convex**
+   ```bash
+   npx convex dev
+   ```
+
+5. **Start development server**
+   ```bash
+   npm run dev
+   ```
+
+Open [http://localhost:3000](http://localhost:3000) to view the application.
+
+## 🏗️ Tech Stack
+
+- **Frontend**: Next.js 15, React 19, TypeScript, TailwindCSS
+- **UI Components**: shadcn/ui, Radix UI
+- **Animations**: Framer Motion
+- **Backend**: Convex (serverless)
+- **Authentication**: Clerk
+- **Database**: Convex (built-in)
+- **Deployment**: Vercel
+- **AI Integration**: OpenAI, Anthropic
+
+## 📁 Project Structure
+
+```
+src/
+├── app/                 # Next.js App Router pages
+├── components/          # Reusable React components
+│   ├── ui/             # shadcn/ui components
+│   ├── landing/        # Landing page sections
+│   ├── dashboard/      # Dashboard components
+│   ├── chatbot/        # Chatbot builder components
+│   └── animations/     # Animation components
+├── lib/                # Utility functions and configurations
+├── hooks/              # Custom React hooks
+├── types/              # TypeScript type definitions
+└── styles/             # Additional CSS styles
+
+convex/                 # Convex backend functions and schema
+├── schema.ts           # Database schema
+├── auth.config.ts      # Authentication configuration
+└── *.ts               # Server functions
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔧 Next Steps
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Set up your Clerk account and get API keys
+2. Set up your Convex account and deploy the schema
+3. Fill in your environment variables
+4. Initialize shadcn/ui components
+5. Start customizing the platform
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📄 License
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is licensed under the MIT License.
