@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { SlideUp } from '@/components/animations/slide-up'
 import { motion } from 'framer-motion'
-import { Bot, Sparkles, Wand2, Send, RotateCcw, CheckCircle, Lightbulb } from 'lucide-react'
+import { Bot, Sparkles, Wand2, Send, RotateCcw, CheckCircle, Lightbulb, Upload, Globe, FileText } from 'lucide-react'
 
 interface ChatbotCreatorProps {
   onChatbotCreated: () => void
@@ -23,8 +23,11 @@ export function ChatbotCreator({ onChatbotCreated }: ChatbotCreatorProps) {
     industry: '',
     personality: '',
     primaryGoal: '',
-    targetAudience: ''
+    targetAudience: '',
+    websiteUrl: '',
+    companyFiles: [] as File[]
   })
+  const [fileUploadStatus, setFileUploadStatus] = useState<string>('')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -42,7 +45,9 @@ export function ChatbotCreator({ onChatbotCreated }: ChatbotCreatorProps) {
       industry: '',
       personality: '',
       primaryGoal: '',
-      targetAudience: ''
+      targetAudience: '',
+      websiteUrl: '',
+      companyFiles: []
     })
     onChatbotCreated()
   }
@@ -58,8 +63,28 @@ export function ChatbotCreator({ onChatbotCreated }: ChatbotCreatorProps) {
       industry: '',
       personality: '',
       primaryGoal: '',
-      targetAudience: ''
+      targetAudience: '',
+      websiteUrl: '',
+      companyFiles: []
     })
+    setFileUploadStatus('')
+  }
+
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files
+    if (files) {
+      const fileArray = Array.from(files)
+      setFormData(prev => ({ ...prev, companyFiles: [...prev.companyFiles, ...fileArray] }))
+      setFileUploadStatus(`${fileArray.length} file(s) uploaded successfully`)
+      setTimeout(() => setFileUploadStatus(''), 3000)
+    }
+  }
+
+  const removeFile = (index: number) => {
+    setFormData(prev => ({
+      ...prev,
+      companyFiles: prev.companyFiles.filter((_, i) => i !== index)
+    }))
   }
 
   const industries = [
@@ -142,11 +167,7 @@ export function ChatbotCreator({ onChatbotCreated }: ChatbotCreatorProps) {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <motion.div
-                  className="space-y-3"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
+                <div className="space-y-3">
                   <Label htmlFor="name" className="text-sm font-medium text-slate-700 dark:text-slate-300">
                     Chatbot Name *
                   </Label>
@@ -155,24 +176,20 @@ export function ChatbotCreator({ onChatbotCreated }: ChatbotCreatorProps) {
                     placeholder="e.g., Customer Support Assistant"
                     value={formData.name}
                     onChange={(e) => handleInputChange('name', e.target.value)}
-                    className="glass-input"
+                    className="glass-input focus:ring-indigo-500/20 focus:border-indigo-500/50 border-slate-300 dark:border-slate-600"
                     required
                   />
-                </motion.div>
+                </div>
 
-                <motion.div
-                  className="space-y-3"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
+                <div className="space-y-3">
                   <Label htmlFor="industry" className="text-sm font-medium text-slate-700 dark:text-slate-300">
                     Industry
                   </Label>
                   <Select value={formData.industry} onValueChange={(value) => handleInputChange('industry', value)}>
-                    <SelectTrigger className="glass-input">
+                    <SelectTrigger>
                       <SelectValue placeholder="Select your industry" />
                     </SelectTrigger>
-                    <SelectContent className="glass-card border-slate-200 dark:border-slate-700">
+                    <SelectContent>
                       {industries.map((industry) => (
                         <SelectItem key={industry.value} value={industry.value}>
                           <div className="flex items-center gap-2">
@@ -183,14 +200,10 @@ export function ChatbotCreator({ onChatbotCreated }: ChatbotCreatorProps) {
                       ))}
                     </SelectContent>
                   </Select>
-                </motion.div>
+                </div>
               </div>
 
-              <motion.div
-                className="space-y-3 mt-6"
-                whileHover={{ scale: 1.01 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
+              <div className="space-y-3 mt-6">
                 <Label htmlFor="description" className="text-sm font-medium text-slate-700 dark:text-slate-300">
                   Description
                 </Label>
@@ -202,7 +215,7 @@ export function ChatbotCreator({ onChatbotCreated }: ChatbotCreatorProps) {
                   className="glass-input min-h-24"
                   rows={4}
                 />
-              </motion.div>
+              </div>
             </div>
 
             {/* Personality & Goals */}
@@ -222,19 +235,15 @@ export function ChatbotCreator({ onChatbotCreated }: ChatbotCreatorProps) {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <motion.div
-                  className="space-y-3"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
+                <div className="space-y-3">
                   <Label htmlFor="personality" className="text-sm font-medium text-slate-700 dark:text-slate-300">
                     Personality
                   </Label>
                   <Select value={formData.personality} onValueChange={(value) => handleInputChange('personality', value)}>
-                    <SelectTrigger className="glass-input">
+                    <SelectTrigger>
                       <SelectValue placeholder="Choose personality style" />
                     </SelectTrigger>
-                    <SelectContent className="glass-card border-slate-200 dark:border-slate-700">
+                    <SelectContent>
                       {personalities.map((personality) => (
                         <SelectItem key={personality.value} value={personality.value}>
                           <div className="space-y-1">
@@ -245,21 +254,17 @@ export function ChatbotCreator({ onChatbotCreated }: ChatbotCreatorProps) {
                       ))}
                     </SelectContent>
                   </Select>
-                </motion.div>
+                </div>
 
-                <motion.div
-                  className="space-y-3"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
+                <div className="space-y-3">
                   <Label htmlFor="primaryGoal" className="text-sm font-medium text-slate-700 dark:text-slate-300">
                     Primary Goal
                   </Label>
                   <Select value={formData.primaryGoal} onValueChange={(value) => handleInputChange('primaryGoal', value)}>
-                    <SelectTrigger className="glass-input">
+                    <SelectTrigger>
                       <SelectValue placeholder="Select main objective" />
                     </SelectTrigger>
-                    <SelectContent className="glass-card border-slate-200 dark:border-slate-700">
+                    <SelectContent>
                       {goals.map((goal) => (
                         <SelectItem key={goal.value} value={goal.value}>
                           <div className="flex items-center gap-2">
@@ -270,14 +275,10 @@ export function ChatbotCreator({ onChatbotCreated }: ChatbotCreatorProps) {
                       ))}
                     </SelectContent>
                   </Select>
-                </motion.div>
+                </div>
               </div>
 
-              <motion.div
-                className="space-y-3 mt-6"
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
+              <div className="space-y-3 mt-6">
                 <Label htmlFor="targetAudience" className="text-sm font-medium text-slate-700 dark:text-slate-300">
                   Target Audience
                 </Label>
@@ -288,15 +289,139 @@ export function ChatbotCreator({ onChatbotCreated }: ChatbotCreatorProps) {
                   onChange={(e) => handleInputChange('targetAudience', e.target.value)}
                   className="glass-input"
                 />
-              </motion.div>
+              </div>
+            </div>
+
+            {/* Company Information */}
+            <div className="border-t border-slate-200 dark:border-slate-700 pt-8">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="p-2 rounded-lg bg-gradient-to-r from-emerald-500 to-teal-600">
+                  <Globe className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
+                    Company Information
+                  </h3>
+                  <p className="text-sm text-slate-600 dark:text-slate-400">
+                    Help your AI understand your business better by providing website and company files
+                  </p>
+                </div>
+              </div>
+
+              <div className="space-y-6">
+                {/* Website URL */}
+                <div className="space-y-3">
+                  <Label htmlFor="websiteUrl" className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                    Website URL
+                  </Label>
+                  <div className="relative">
+                    <Globe className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-400" />
+                    <Input
+                      id="websiteUrl"
+                      type="url"
+                      placeholder="https://your-company.com"
+                      value={formData.websiteUrl}
+                      onChange={(e) => handleInputChange('websiteUrl', e.target.value)}
+                      className="glass-input pl-10 text-slate-700 dark:text-slate-300"
+                    />
+                  </div>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">
+                    Your chatbot will learn about your company from your website content
+                  </p>
+                </div>
+
+                {/* File Upload */}
+                <div className="space-y-3">
+                  <Label htmlFor="companyFiles" className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                    Company Files
+                  </Label>
+                  <div className="relative">
+                    <input
+                      id="companyFiles"
+                      type="file"
+                      multiple
+                      accept=".pdf,.doc,.docx,.txt,.csv"
+                      onChange={handleFileUpload}
+                      className="hidden"
+                    />
+                    <label
+                      htmlFor="companyFiles"
+                      className="flex items-center justify-center w-full h-32 border-2 border-dashed border-slate-300 dark:border-slate-600 rounded-xl bg-slate-50/50 dark:bg-slate-800/50 hover:bg-slate-100/50 dark:hover:bg-slate-800/70 transition-colors cursor-pointer group"
+                    >
+                      <div className="text-center">
+                        <Upload className="w-8 h-8 text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300 mx-auto mb-2" />
+                        <p className="text-sm font-medium text-slate-600 dark:text-slate-400 group-hover:text-slate-800 dark:group-hover:text-slate-200">
+                          Click to upload files
+                        </p>
+                        <p className="text-xs text-slate-500 dark:text-slate-500 mt-1">
+                          PDF, DOC, DOCX, TXT, CSV (Max 10MB each)
+                        </p>
+                      </div>
+                    </label>
+                  </div>
+                  
+                  {fileUploadStatus && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="text-sm text-green-600 dark:text-green-400 font-medium"
+                    >
+                      ✓ {fileUploadStatus}
+                    </motion.div>
+                  )}
+
+                  {/* Uploaded Files List */}
+                  {formData.companyFiles.length > 0 && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      className="space-y-2"
+                    >
+                      <p className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                        Uploaded Files ({formData.companyFiles.length}):
+                      </p>
+                      <div className="space-y-2 max-h-32 overflow-y-auto">
+                        {formData.companyFiles.map((file, index) => (
+                          <motion.div
+                            key={index}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            className="flex items-center justify-between p-2 bg-white/50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700"
+                          >
+                            <div className="flex items-center gap-2 flex-1 min-w-0">
+                              <FileText className="w-4 h-4 text-slate-500 flex-shrink-0" />
+                              <span className="text-sm text-slate-700 dark:text-slate-300 truncate">
+                                {file.name}
+                              </span>
+                              <span className="text-xs text-slate-500 flex-shrink-0">
+                                ({(file.size / 1024 / 1024).toFixed(1)}MB)
+                              </span>
+                            </div>
+                            <Button
+                              type="button"
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => removeFile(index)}
+                              className="h-6 w-6 p-0 text-slate-400 hover:text-red-500"
+                            >
+                              ×
+                            </Button>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+
+                  <p className="text-xs text-slate-500 dark:text-slate-400">
+                    Upload company documents, FAQs, product catalogs, or any relevant information to improve your chatbot's knowledge
+                  </p>
+                </div>
+              </div>
             </div>
 
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row justify-end gap-4 mt-8 pt-8 border-t border-slate-200 dark:border-slate-700">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
+              <div>
                 <Button
                   type="button"
                   variant="outline"
@@ -307,12 +432,9 @@ export function ChatbotCreator({ onChatbotCreated }: ChatbotCreatorProps) {
                   <RotateCcw className="w-4 h-4 mr-2" />
                   Reset
                 </Button>
-              </motion.div>
+              </div>
               
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
+              <div>
                 <Button 
                   type="submit" 
                   disabled={isCreating || !formData.name}
@@ -338,7 +460,7 @@ export function ChatbotCreator({ onChatbotCreated }: ChatbotCreatorProps) {
                     )}
                   </span>
                 </Button>
-              </motion.div>
+              </div>
             </div>
           </div>
         </form>
@@ -379,10 +501,9 @@ export function ChatbotCreator({ onChatbotCreated }: ChatbotCreatorProps) {
               description: 'You can always adjust the personality after creation based on user feedback'
             }
           ].map((tip, index) => (
-            <motion.div
+            <div
               key={index}
               className="p-4 rounded-xl bg-white/50 dark:bg-slate-800/50 hover:bg-white/70 dark:hover:bg-slate-800/70 transition-colors"
-              whileHover={{ scale: 1.02 }}
             >
               <h4 className="font-medium text-slate-900 dark:text-slate-100 mb-1">
                 {tip.title}
@@ -390,7 +511,7 @@ export function ChatbotCreator({ onChatbotCreated }: ChatbotCreatorProps) {
               <p className="text-sm text-slate-600 dark:text-slate-400">
                 {tip.description}
               </p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </motion.div>

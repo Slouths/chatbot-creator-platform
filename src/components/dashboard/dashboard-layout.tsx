@@ -81,8 +81,17 @@ export function DashboardLayout() {
           </div>
         </div>
 
-        {/* Fixed Navigation Tabs */}
-        <div className="fixed top-20 left-0 right-0 z-40 backdrop-blur-xl bg-white/80 dark:bg-slate-900/80">
+        {/* Navigation Tabs - Fixed */}
+        <div 
+          className="fixed top-20 left-0 right-0 z-50 backdrop-blur-xl bg-white/90 dark:bg-slate-900/90 border-b border-slate-200/50 dark:border-slate-700/50 shadow-sm"
+          style={{ 
+            position: 'fixed !important', 
+            top: '80px !important',
+            left: '0 !important',
+            right: '0 !important',
+            zIndex: 9999
+          }}
+        >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <div className="glass-card p-2 rounded-2xl">
               <div className="flex flex-wrap justify-center gap-2">
@@ -100,10 +109,8 @@ export function DashboardLayout() {
                       }`}
                     >
                       {isActive && (
-                        <motion.div
-                          layoutId="activeTabBg"
+                        <div
                           className={`absolute inset-0 bg-gradient-to-r ${tab.color} rounded-xl`}
-                          transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                         />
                       )}
                       <div className="relative z-10 flex items-center gap-2">
@@ -123,7 +130,7 @@ export function DashboardLayout() {
         </div>
 
         {/* Tab Content */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mt-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8" style={{ marginTop: '120px' }}>
           <div key={activeTab}>
             {renderTabContent()}
           </div>
@@ -243,30 +250,7 @@ function OverviewTab({ onCreateNew }: { onCreateNew: () => void }) {
         ))}
       </div>
 
-      {/* Quick Actions */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {quickActions.map((action, index) => (
-          <div
-            key={action.title}
-            onClick={action.action}
-            className="group glass-card p-6 cursor-pointer hover:shadow-lg transition-shadow"
-          >
-            <div className="flex items-center gap-4 mb-4">
-              <div className={`p-3 rounded-xl bg-gradient-to-r ${action.color} shadow-lg`}>
-                <action.icon className="w-6 h-6 text-white" />
-              </div>
-              <div className="flex-1">
-                <h3 className="font-semibold text-slate-900 dark:text-slate-100 mb-1">
-                  {action.title}
-                </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400">
-                  {action.description}
-                </p>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
+
 
       {/* Recent Activity */}
       <div className="glass-card p-6">

@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -25,7 +24,7 @@
     --destructive-foreground: 255 255 255;
     --border: 226 232 240;
     --input: 226 232 240;
-    --ring: 99 102 241;
+    --ring: 79 70 229;
     --radius: 12px;
   }
 
@@ -58,7 +57,7 @@
   body {
     @apply bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/20 dark:from-slate-950 dark:via-blue-950/30 dark:to-indigo-950/20;
     @apply text-foreground font-sans antialiased;
-    font-family: 'Inter', 'Poppins', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
     min-height: 100vh;
   }
 
@@ -83,14 +82,14 @@
 
   .glass-button {
     @apply glass rounded-xl px-6 py-3;
-    @apply hover:scale-[0.98] active:scale-[0.96];
     @apply transition-all duration-200 ease-out;
     @apply hover:shadow-lg;
   }
 
   .glass-input {
     @apply glass rounded-xl px-4 py-3;
-    @apply focus:ring-2 focus:ring-primary/20 focus:border-primary/50;
+    @apply focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500/50;
+    @apply border-slate-300 dark:border-slate-600;
     @apply transition-all duration-200 ease-out;
   }
 

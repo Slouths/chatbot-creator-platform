@@ -32,7 +32,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
-        <body className={`${inter.variable} ${poppins.variable} font-sans`}>
+        <body className={`${inter.variable} font-sans`}>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
