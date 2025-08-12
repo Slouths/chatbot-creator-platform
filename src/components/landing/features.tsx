@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Bot, MessageSquare, Zap, Globe, BarChart3, Shield, Smartphone, Code, ArrowRight, Sparkles } from 'lucide-react'
+import { Bot, MessageSquare, Zap, Globe, BarChart3, Shield, Smartphone, Code, Sparkles } from 'lucide-react'
 
 const features = [
   {
@@ -115,18 +115,17 @@ export function Features() {
               transition={{ delay: index * 0.05 }}
               viewport={{ once: true }}
             >
-              <div className="glass-card p-6 h-full relative overflow-hidden hover:shadow-lg transition-shadow duration-300">
+              <div className="glass-card p-6 h-full relative overflow-hidden">
                 {/* Header */}
                 <div className="relative z-10 mb-4">
                   <div className={`inline-flex p-3 rounded-xl bg-gradient-to-r ${feature.color} shadow-lg mb-4`}>
                     <feature.icon className="w-6 h-6 text-white" />
                   </div>
                   
-                  <div className="flex items-center justify-between mb-2">
+                  <div className="mb-2">
                     <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100">
                       {feature.title}
                     </h3>
-                    <ArrowRight className="w-4 h-4 text-slate-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" />
                   </div>
                   
                   <div className="text-xs text-slate-500 dark:text-slate-400 mb-3">
@@ -144,11 +143,6 @@ export function Features() {
                     <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                     {feature.benefit}
                   </div>
-                </div>
-
-                {/* Hover Effect */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${feature.color}`} />
                 </div>
               </div>
             </motion.div>
@@ -173,7 +167,6 @@ export function Features() {
             <button className="inline-flex items-center gap-2 glass-button bg-gradient-to-r from-indigo-500 to-purple-600 text-white border-0 px-8 py-3 hover:from-indigo-600 hover:to-purple-700 transition-all duration-300">
               <Sparkles className="w-4 h-4" />
               Start Free Trial
-              <ArrowRight className="w-4 h-4" />
             </button>
           </div>
         </motion.div>
