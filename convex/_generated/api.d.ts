@@ -13,9 +13,12 @@ import type {
   FilterApi,
   FunctionReference,
 } from "convex/server";
+import type * as analytics from "../analytics.js";
 import type * as chatbots from "../chatbots.js";
 import type * as conversations from "../conversations.js";
+import type * as knowledge_bases from "../knowledge_bases.js";
 import type * as organizations from "../organizations.js";
+import type * as seed from "../seed.js";
 
 /**
  * A utility for referencing Convex functions in your app's API.
@@ -26,9 +29,12 @@ import type * as organizations from "../organizations.js";
  * ```
  */
 declare const fullApi: ApiFromModules<{
+  analytics: typeof analytics;
   chatbots: typeof chatbots;
   conversations: typeof conversations;
+  knowledge_bases: typeof knowledge_bases;
   organizations: typeof organizations;
+  seed: typeof seed;
 }>;
 export declare const api: FilterApi<
   typeof fullApi,

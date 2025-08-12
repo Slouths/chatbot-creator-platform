@@ -76,7 +76,7 @@ export function Pricing() {
         </SlideUp>
 
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {plans.map((plan, index) => (
+          {plans.map((plan) => (
             <motion.div
               key={plan.name}
               variants={{

@@ -13,10 +13,8 @@ import {
   CreditCard, 
   Key, 
   Bell, 
-  Shield, 
-  Globe,
-  Zap,
-  Package
+  Shield,
+  Zap
 } from 'lucide-react'
 
 export default function SettingsPage() {

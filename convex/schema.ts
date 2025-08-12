@@ -82,7 +82,7 @@ export default defineSchema({
       user_location: v.optional(v.string()),
       user_language: v.optional(v.string()),
       referring_page: v.optional(v.string()),
-      session_data: v.object({}),
+      session_data: v.any(),
     }),
     started_at: v.number(),
     last_message_at: v.number(),
@@ -118,7 +118,7 @@ export default defineSchema({
     chatbot_id: v.optional(v.id("chatbots")),
     conversation_id: v.optional(v.id("conversations")),
     event_type: v.string(),
-    event_data: v.object({}),
+    event_data: v.any(),
     timestamp: v.number(),
     user_identifier: v.optional(v.string()),
     platform: v.optional(v.string()),
@@ -129,7 +129,7 @@ export default defineSchema({
   deployments: defineTable({
     chatbot_id: v.id("chatbots"),
     platform: v.string(),
-    config: v.object({}),
+    config: v.any(),
     status: v.union(
       v.literal("pending"),
       v.literal("deployed"),

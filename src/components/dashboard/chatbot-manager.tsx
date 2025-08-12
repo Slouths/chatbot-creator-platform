@@ -2,10 +2,10 @@
 
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+
 import { Badge } from '@/components/ui/badge'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
-import { SlideUp } from '@/components/animations/slide-up'
+
 import { motion, AnimatePresence } from 'framer-motion'
 import { 
   Bot, 
@@ -17,9 +17,7 @@ import {
   Trash2, 
   MessageSquare, 
   TrendingUp, 
-  Clock,
-  Users,
-  Sparkles,
+
   Eye,
   Copy,
   Edit

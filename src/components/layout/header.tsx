@@ -10,7 +10,7 @@ import { Menu, X, Bot, Sparkles, LayoutDashboard } from 'lucide-react'
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const { isSignedIn, user } = useUser()
+  const { isSignedIn } = useUser()
 
   useEffect(() => {
     const handleScroll = () => {

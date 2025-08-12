@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import { Button } from '@/components/ui/button'
+
 import { ChatbotCreator } from '@/components/dashboard/chatbot-creator'
 import { ChatbotManager } from '@/components/dashboard/chatbot-manager'
 import { AnalyticsDashboard } from '@/components/dashboard/analytics-dashboard'
@@ -17,8 +17,10 @@ import {
   TrendingUp,
   Users,
   MessageCircle,
-  Clock
+  Clock,
+  Activity
 } from 'lucide-react'
+import { DemoDataPanel } from './demo-data-panel'
 
 type DashboardTab = 'overview' | 'create' | 'manage' | 'analytics' | 'demo'
 
@@ -88,7 +90,7 @@ export function DashboardLayout() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <div className="glass-card p-2 rounded-2xl">
               <div className="flex flex-wrap justify-center gap-2">
-                {tabs.map((tab, index) => {
+                {tabs.map((tab) => {
                   const Icon = tab.icon
                   const isActive = activeTab === tab.id
                   return (
@@ -133,7 +135,7 @@ export function DashboardLayout() {
   )
 }
 
-function OverviewTab({ onCreateNew }: { onCreateNew: () => void }) {
+function OverviewTab({ }: { onCreateNew: () => void }) {
   const stats = useMemo(() => [
     {
       title: 'Active Chatbots',
@@ -169,55 +171,39 @@ function OverviewTab({ onCreateNew }: { onCreateNew: () => void }) {
     }
   ], [])
 
-  const quickActions = useMemo(() => [
-    {
-      title: 'Create New Chatbot',
-      description: 'Build a custom AI chatbot in minutes',
-      icon: Plus,
-      color: 'from-indigo-500 to-purple-600',
-      action: onCreateNew
-    },
-    {
-      title: 'View Examples',
-      description: 'Explore real-world implementations',
-      icon: Lightbulb,
-      color: 'from-emerald-500 to-teal-500',
-      action: () => {}
-    },
-    {
-      title: 'Analytics Dashboard',
-      description: 'Deep dive into performance metrics',
-      icon: BarChart3,
-      color: 'from-emerald-500 to-teal-500',
-      action: () => {}
-    }
-  ], [onCreateNew])
+
 
   const activities = useMemo(() => [
-    { icon: '✅', text: 'Customer Support Bot handled 23 inquiries', time: '2h ago', color: 'text-green-500' },
-    { icon: '📊', text: 'Sales Assistant qualified 5 new leads', time: '4h ago', color: 'text-blue-500' },
-    { icon: '⭐', text: 'Received 5-star rating from customer', time: '6h ago', color: 'text-blue-500' },
-    { icon: '🎯', text: 'Conversion rate increased by 12%', time: '1d ago', color: 'text-purple-500' }
+    { id: 1, icon: '✅', text: 'Customer Support Bot handled 23 inquiries', time: '2h ago', color: 'text-green-500' },
+    { id: 2, icon: '📊', text: 'Sales Assistant qualified 5 new leads', time: '4h ago', color: 'text-blue-500' },
+    { id: 3, icon: '⭐', text: 'Received 5-star rating from customer', time: '6h ago', color: 'text-blue-500' },
+    { id: 4, icon: '🎯', text: 'Conversion rate increased by 12%', time: '1d ago', color: 'text-purple-500' }
   ], [])
 
   return (
     <div className="space-y-8">
-      {/* Welcome Section */}
-      <div className="glass-card p-8 text-center">
-        <div className="inline-flex items-center justify-center w-16 h-16 mb-6 rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-600 shadow-lg">
-          <Users className="w-8 h-8 text-white" />
-        </div>
-        <h2 className="heading-secondary mb-4">
-          Welcome to Your AI Command Center
-        </h2>
-        <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-balance">
-          Orchestrate intelligent conversations that delight customers and drive business growth
-        </p>
+      {/* Hero Section */}
+      <div className="text-center space-y-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h1 className="text-4xl font-bold text-slate-900 dark:text-slate-100 mb-4">
+            AI Command Center
+          </h1>
+          <p className="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto">
+            Welcome to your chatbot management dashboard. Create, monitor, and optimize your AI assistants in one place.
+          </p>
+        </motion.div>
       </div>
+
+      {/* Demo Data Panel */}
+      <DemoDataPanel />
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {stats.map((stat, index) => (
+        {stats.map((stat) => (
           <div
             key={stat.title}
             className="group glass-card p-6 cursor-pointer hover:shadow-lg transition-shadow"
@@ -243,36 +229,43 @@ function OverviewTab({ onCreateNew }: { onCreateNew: () => void }) {
         ))}
       </div>
 
-
-
       {/* Recent Activity */}
       <div className="glass-card p-6">
         <div className="flex items-center gap-3 mb-6">
-          <div className="p-2 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600">
-            <TrendingUp className="w-5 h-5 text-white" />
+          <div className="p-2 rounded-lg bg-gradient-to-r from-purple-500 to-violet-600">
+            <Activity className="w-5 h-5 text-white" />
           </div>
           <div>
-            <h3 className="font-semibold text-slate-900 dark:text-slate-100">Recent Activity</h3>
-            <p className="text-sm text-slate-600 dark:text-slate-400">Latest updates from your chatbots</p>
+            <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
+              Recent Activity
+            </h3>
+            <p className="text-sm text-slate-600 dark:text-slate-400">
+              Latest conversations and bot updates
+            </p>
           </div>
         </div>
-        
+
         <div className="space-y-4">
           {activities.map((activity, index) => (
-            <div
-              key={index}
-              className="flex items-center gap-4 p-4 rounded-xl hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors duration-200"
+            <motion.div
+              key={activity.id}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: index * 0.1 }}
+              className="flex items-center gap-4 p-3 rounded-lg bg-white/50 dark:bg-slate-800/50 hover:bg-white/70 dark:hover:bg-slate-800/70 transition-colors"
             >
-              <div className={`text-xl ${activity.color}`}>
+              <div className="text-2xl">
                 {activity.icon}
               </div>
               <div className="flex-1">
-                <p className="text-sm text-slate-700 dark:text-slate-300">{activity.text}</p>
+                <p className="text-sm font-medium text-slate-900 dark:text-slate-100">
+                  {activity.text}
+                </p>
               </div>
-              <div className="text-xs text-slate-500 dark:text-slate-400">
+              <div className="text-xs text-slate-400">
                 {activity.time}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

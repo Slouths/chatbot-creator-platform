@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
-import { ArrowRight, Bot, MessageSquare, Zap, Sparkles, Play, CheckCircle } from 'lucide-react'
+import { ArrowRight, Bot, MessageSquare, Zap, Sparkles, Play } from 'lucide-react'
 import Link from 'next/link'
 
 export function Hero() {

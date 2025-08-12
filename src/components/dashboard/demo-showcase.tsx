@@ -2,23 +2,17 @@
 
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+
 import { Badge } from '@/components/ui/badge'
-import { SlideUp } from '@/components/animations/slide-up'
+
 import { motion, AnimatePresence } from 'framer-motion'
 import { 
   Bot, 
   Play, 
-  MessageCircle, 
-  ShoppingCart, 
-  Heart, 
-  Calendar, 
   Lightbulb,
   Send,
   User,
-  Sparkles,
   Star,
-  ExternalLink,
   Copy,
   Settings
 } from 'lucide-react'

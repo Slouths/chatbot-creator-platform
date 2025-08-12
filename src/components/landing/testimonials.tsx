@@ -50,7 +50,7 @@ export function Testimonials() {
         </SlideUp>
 
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {testimonials.map((testimonial, index) => (
+          {testimonials.map((testimonial) => (
             <motion.div
               key={testimonial.name}
               variants={{
@@ -69,7 +69,7 @@ export function Testimonials() {
                 <Quote className="w-8 h-8 text-slate-500 dark:text-slate-400 mb-4" />
                 
                 <p className="text-slate-800 dark:text-slate-200 mb-6 leading-relaxed">
-                  "{testimonial.content}"
+                  &ldquo;{testimonial.content}&rdquo;
                 </p>
                 
                 <div className="flex items-center gap-4">

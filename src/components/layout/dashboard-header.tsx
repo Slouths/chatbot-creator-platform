@@ -11,8 +11,7 @@ import {
   X, 
   Bot, 
   LayoutDashboard, 
-  MessageSquare, 
-  BarChart3, 
+ 
   Settings,
   FileText,
   Home,
