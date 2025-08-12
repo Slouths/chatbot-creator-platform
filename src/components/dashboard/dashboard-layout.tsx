@@ -81,8 +81,8 @@ export function DashboardLayout() {
           </div>
         </div>
 
-        {/* Floating Navigation Tabs */}
-        <div className="sticky top-20 z-40 backdrop-blur-xl">
+        {/* Fixed Navigation Tabs */}
+        <div className="fixed top-20 left-0 right-0 z-40 backdrop-blur-xl bg-white/80 dark:bg-slate-900/80">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <div className="glass-card p-2 rounded-2xl">
               <div className="flex flex-wrap justify-center gap-2">
@@ -123,7 +123,7 @@ export function DashboardLayout() {
         </div>
 
         {/* Tab Content */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mt-20">
           <div key={activeTab}>
             {renderTabContent()}
           </div>
