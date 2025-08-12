@@ -81,16 +81,9 @@ export function DashboardLayout() {
           </div>
         </div>
 
-        {/* Navigation Tabs - Fixed */}
+        {/* Navigation Tabs - Fixed under AI Command Center */}
         <div 
-          className="fixed top-20 left-0 right-0 z-50 backdrop-blur-xl bg-white/90 dark:bg-slate-900/90 border-b border-slate-200/50 dark:border-slate-700/50 shadow-sm"
-          style={{ 
-            position: 'fixed !important', 
-            top: '80px !important',
-            left: '0 !important',
-            right: '0 !important',
-            zIndex: 9999
-          }}
+          className="relative z-40 backdrop-blur-xl bg-white/95 dark:bg-slate-900/95 border-b border-slate-200/50 dark:border-slate-700/50 shadow-lg"
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <div className="glass-card p-2 rounded-2xl">
@@ -130,7 +123,7 @@ export function DashboardLayout() {
         </div>
 
         {/* Tab Content */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8" style={{ marginTop: '120px' }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div key={activeTab}>
             {renderTabContent()}
           </div>

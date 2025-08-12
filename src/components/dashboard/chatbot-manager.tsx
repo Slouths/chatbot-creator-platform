@@ -127,7 +127,7 @@ export function ChatbotManager({ onCreateNew }: ChatbotManagerProps) {
 
   return (
     <div className="space-y-8">
-      {/* Header */}
+      {/* Chatbot Management Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -146,11 +146,6 @@ export function ChatbotManager({ onCreateNew }: ChatbotManagerProps) {
             Chatbot Management
           </span>
         </div>
-        
-        <h1 className="heading-secondary mb-4">Manage Your AI Assistants</h1>
-        <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-balance">
-          Monitor, configure, and optimize all your chatbots from one central dashboard
-        </p>
       </motion.div>
 
       {/* Stats Overview */}

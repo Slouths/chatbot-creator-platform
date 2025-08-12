@@ -35,8 +35,6 @@ export function DashboardHeader() {
   const navItems = [
     { href: '/', label: 'Home', icon: Home },
     { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-    { href: '/chatbots', label: 'Chatbots', icon: MessageSquare },
-    { href: '/analytics', label: 'Analytics', icon: BarChart3 },
     { href: '/docs', label: 'Documentation', icon: FileText },
     { href: '/settings', label: 'Settings', icon: Settings },
   ]
