@@ -2,15 +2,18 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { useUser, UserButton } from '@clerk/nextjs'
-import { Menu, X, Bot, Sparkles, LayoutDashboard } from 'lucide-react'
+import { Menu, X, Bot, Sparkles, LayoutDashboard, Home, FileText } from 'lucide-react'
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const { isSignedIn } = useUser()
+  const pathname = usePathname()
+  const isDashboard = pathname?.startsWith('/dashboard')
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,7 +23,11 @@ export function Header() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const navItems = [
+  // Dynamic navigation based on current page
+  const navItems = isDashboard && isSignedIn ? [
+    { href: '/', label: 'Home', icon: Home },
+    { href: '/docs', label: 'Docs', icon: FileText }
+  ] : [
     { href: '#features', label: 'Features' },
     { href: '#pricing', label: 'Pricing' },
     { href: '#testimonials', label: 'Testimonials' },

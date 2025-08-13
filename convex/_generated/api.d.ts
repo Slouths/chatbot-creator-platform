@@ -19,6 +19,7 @@ import type * as conversations from "../conversations.js";
 import type * as knowledge_bases from "../knowledge_bases.js";
 import type * as organizations from "../organizations.js";
 import type * as seed from "../seed.js";
+import type * as usage from "../usage.js";
 
 /**
  * A utility for referencing Convex functions in your app's API.
@@ -35,6 +36,7 @@ declare const fullApi: ApiFromModules<{
   knowledge_bases: typeof knowledge_bases;
   organizations: typeof organizations;
   seed: typeof seed;
+  usage: typeof usage;
 }>;
 export declare const api: FilterApi<
   typeof fullApi,

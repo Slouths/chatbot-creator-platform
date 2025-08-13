@@ -69,7 +69,7 @@ const demoExamples = [
       { type: 'bot', message: "Absolutely! I can arrange a virtual tour for any of these properties. The virtual tour includes 360° views, detailed floor plans, and neighborhood insights. Which property interests you most?" }
     ],
     icon: '🏠',
-    color: 'from-purple-500 to-violet-500',
+    color: 'from-indigo-500 to-blue-500',
     stats: { satisfaction: 4.7, conversations: '950', conversion: '24%' }
   }
 ]
@@ -198,7 +198,7 @@ export function DemoShowcase() {
             <Button 
               className={`w-full ${
                 selectedDemo.id === demo.id 
-                  ? 'bg-gradient-to-r from-indigo-500 to-purple-600 text-white'
+                  ? 'bg-gradient-to-r from-indigo-500 to-blue-600 text-white'
                   : 'glass-button border-slate-200 dark:border-slate-700'
               }`}
               size="sm"
@@ -276,7 +276,7 @@ export function DemoShowcase() {
                       }`}>
                         <div className="flex items-start gap-2">
                           {message.type === 'bot' && (
-                            <div className="w-6 h-6 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <div className="w-6 h-6 rounded-full bg-gradient-to-r from-indigo-500 to-blue-600 flex items-center justify-center flex-shrink-0 mt-0.5">
                               <Bot className="w-3 h-3 text-white" />
                             </div>
                           )}
@@ -303,7 +303,7 @@ export function DemoShowcase() {
                   >
                     <div className="bg-white dark:bg-slate-700 p-3 rounded-2xl mr-12 shadow-sm">
                       <div className="flex items-center gap-2">
-                        <div className="w-6 h-6 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center justify-center">
+                        <div className="w-6 h-6 rounded-full bg-gradient-to-r from-indigo-500 to-blue-600 flex items-center justify-center">
                           <Bot className="w-3 h-3 text-white" />
                         </div>
                         <div className="flex space-x-1">

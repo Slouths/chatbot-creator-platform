@@ -6,14 +6,22 @@ import { ChatbotCreator } from '@/components/dashboard/chatbot-creator'
 import { ChatbotManager } from '@/components/dashboard/chatbot-manager'
 import { AnalyticsDashboard } from '@/components/dashboard/analytics-dashboard'
 import { DemoShowcase } from '@/components/dashboard/demo-showcase'
-import { DashboardHeader } from '@/components/layout/dashboard-header'
+import { DeploymentDashboard } from '@/components/dashboard/deployment-dashboard'
+import { BillingDashboard } from '@/components/dashboard/billing-dashboard'
+import { StripeSetup } from '@/components/dashboard/stripe-setup'
+import { Header } from '@/components/layout/header'
 import { motion } from 'framer-motion'
+import { useQuery } from 'convex/react'
+import { api } from '../../../convex/_generated/api'
 import { 
   LayoutDashboard, 
   Plus, 
   Settings, 
   BarChart3, 
   Lightbulb,
+  Rocket,
+  CreditCard,
+  ExternalLink,
   TrendingUp,
   Users,
   MessageCircle,
@@ -22,7 +30,7 @@ import {
 } from 'lucide-react'
 import { DemoDataPanel } from './demo-data-panel'
 
-type DashboardTab = 'overview' | 'create' | 'manage' | 'analytics' | 'demo'
+type DashboardTab = 'overview' | 'create' | 'manage' | 'analytics' | 'deploy' | 'billing' | 'setup' | 'demo'
 
 export function DashboardLayout() {
   const [activeTab, setActiveTab] = useState<DashboardTab>('overview')
@@ -30,9 +38,12 @@ export function DashboardLayout() {
   const tabs = useMemo(() => [
     { id: 'overview', label: 'Overview', icon: LayoutDashboard, color: 'from-blue-500 to-cyan-500' },
     { id: 'create', label: 'Create Bot', icon: Plus, color: 'from-green-500 to-emerald-500' },
-    { id: 'manage', label: 'Manage Bots', icon: Settings, color: 'from-purple-500 to-violet-500' },
+    { id: 'manage', label: 'Manage Bots', icon: Settings, color: 'from-indigo-500 to-blue-500' },
     { id: 'analytics', label: 'Analytics', icon: BarChart3, color: 'from-blue-500 to-cyan-500' },
-    { id: 'demo', label: 'Examples', icon: Lightbulb, color: 'from-emerald-500 to-teal-500' }
+    { id: 'deploy', label: 'Deploy', icon: Rocket, color: 'from-emerald-500 to-teal-500' },
+    { id: 'billing', label: 'Billing', icon: CreditCard, color: 'from-purple-500 to-indigo-500' },
+    { id: 'setup', label: 'Setup', icon: ExternalLink, color: 'from-orange-500 to-red-500' },
+    { id: 'demo', label: 'Examples', icon: Lightbulb, color: 'from-indigo-500 to-purple-500' }
   ], [])
 
   const handleChatbotCreated = () => {
@@ -47,6 +58,12 @@ export function DashboardLayout() {
         return <ChatbotManager onCreateNew={() => setActiveTab('create')} />
       case 'analytics':
         return <AnalyticsDashboard />
+      case 'deploy':
+        return <DeploymentDashboard />
+      case 'billing':
+        return <BillingDashboard />
+      case 'setup':
+        return <StripeSetup />
       case 'demo':
         return <DemoShowcase />
       default:
@@ -59,7 +76,7 @@ export function DashboardLayout() {
       background: 'linear-gradient(135deg, rgb(248 250 252) 0%, rgb(239 246 255 / 0.3) 50%, rgb(238 242 255 / 0.2) 100%)',
       backgroundAttachment: 'fixed'
     }}>
-      <DashboardHeader />
+      <Header />
       
       {/* Main Content */}
       <div className="pt-20 pb-8">
@@ -135,11 +152,28 @@ export function DashboardLayout() {
   )
 }
 
-function OverviewTab({ }: { onCreateNew: () => void }) {
-  const stats = useMemo(() => [
+function OverviewTab({ onCreateNew }: { onCreateNew: () => void }) {
+  // Temporarily disable Convex queries to fix React hooks error
+  // const organizations = useQuery(api.organizations.list)
+  // const firstOrganization = organizations?.[0]
+  
+  // const analyticsData = useQuery(
+  //   api.analytics.getOrganizationAnalytics, 
+  //   firstOrganization ? {
+  //     organizationId: firstOrganization._id,
+  //     timeRange: "7d" as const
+  //   } : "skip"
+  // )
+  
+  const organizations = null
+  const firstOrganization = null
+  const analyticsData = null
+
+  // Demo data (analytics queries temporarily disabled)
+  const stats = [
     {
       title: 'Active Chatbots',
-      value: '2',
+      value: '3',
       change: '+12%',
       icon: Users,
       color: 'from-blue-500 to-cyan-500',
@@ -147,7 +181,7 @@ function OverviewTab({ }: { onCreateNew: () => void }) {
     },
     {
       title: 'Total Conversations',
-      value: '2,139',
+      value: '1,247',
       change: '+23%',
       icon: MessageCircle,
       color: 'from-green-500 to-emerald-500',
@@ -155,10 +189,10 @@ function OverviewTab({ }: { onCreateNew: () => void }) {
     },
     {
       title: 'Satisfaction Rate',
-      value: '4.7/5',
+      value: '4.2/5',
       change: '+0.3',
       icon: TrendingUp,
-      color: 'from-purple-500 to-violet-500',
+      color: 'from-indigo-500 to-blue-500',
       description: 'Customer rating'
     },
     {
@@ -169,16 +203,16 @@ function OverviewTab({ }: { onCreateNew: () => void }) {
       color: 'from-blue-500 to-cyan-500',
       description: 'Average speed'
     }
-  ], [])
+  ]
 
 
 
-  const activities = useMemo(() => [
+  const activities = [
     { id: 1, icon: '✅', text: 'Customer Support Bot handled 23 inquiries', time: '2h ago', color: 'text-green-500' },
     { id: 2, icon: '📊', text: 'Sales Assistant qualified 5 new leads', time: '4h ago', color: 'text-blue-500' },
     { id: 3, icon: '⭐', text: 'Received 5-star rating from customer', time: '6h ago', color: 'text-blue-500' },
-    { id: 4, icon: '🎯', text: 'Conversion rate increased by 12%', time: '1d ago', color: 'text-purple-500' }
-  ], [])
+    { id: 4, icon: '🎯', text: 'Conversion rate increased by 12%', time: '1d ago', color: 'text-indigo-500' }
+  ]
 
   return (
     <div className="space-y-8">
@@ -232,7 +266,7 @@ function OverviewTab({ }: { onCreateNew: () => void }) {
       {/* Recent Activity */}
       <div className="glass-card p-6">
         <div className="flex items-center gap-3 mb-6">
-          <div className="p-2 rounded-lg bg-gradient-to-r from-purple-500 to-violet-600">
+          <div className="p-2 rounded-lg bg-gradient-to-r from-indigo-500 to-blue-600">
             <Activity className="w-5 h-5 text-white" />
           </div>
           <div>

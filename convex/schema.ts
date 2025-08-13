@@ -142,4 +142,16 @@ export default defineSchema({
     created_at: v.number(),
   }).index("by_chatbot", ["chatbot_id"])
     .index("by_platform", ["platform"]),
+
+  usage: defineTable({
+    organizationId: v.id("organizations"),
+    period: v.string(), // "YYYY-MM" format
+    conversations: v.number(),
+    messages: v.number(),
+    apiCalls: v.number(),
+    createdAt: v.string(),
+    lastUpdated: v.string(),
+  }).index("by_organization", ["organizationId"])
+    .index("by_period", ["period"])
+    .index("by_organization_period", ["organizationId", "period"]),
 });

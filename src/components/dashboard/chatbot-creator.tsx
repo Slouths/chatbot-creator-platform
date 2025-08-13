@@ -239,7 +239,7 @@ export function ChatbotCreator({ onChatbotCreated }: ChatbotCreatorProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full mb-4">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-indigo-500 to-indigo-600 rounded-full mb-4">
             <Bot className="w-8 h-8 text-white" />
           </div>
           <h2 className="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-2">
@@ -284,13 +284,13 @@ export function ChatbotCreator({ onChatbotCreated }: ChatbotCreatorProps) {
       <form onSubmit={handleSubmit} className="space-y-8">
         {/* Basic Information */}
         <SlideUp>
-          <Card>
+          <Card className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Sparkles className="w-5 h-5 text-purple-500" />
+              <CardTitle className="flex items-center gap-2 text-slate-900 dark:text-slate-100">
+                <Sparkles className="w-5 h-5 text-indigo-500" />
                 Basic Information
               </CardTitle>
-              <CardDescription>
+              <CardDescription className="text-slate-600 dark:text-slate-400">
                 Provide the essential details about your chatbot
               </CardDescription>
             </CardHeader>
@@ -343,13 +343,13 @@ export function ChatbotCreator({ onChatbotCreated }: ChatbotCreatorProps) {
 
         {/* Company Information */}
         <SlideUp>
-          <Card>
+          <Card className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-slate-900 dark:text-slate-100">
                 <Globe className="w-5 h-5 text-blue-500" />
                 Company Information
               </CardTitle>
-              <CardDescription>
+              <CardDescription className="text-slate-600 dark:text-slate-400">
                 Help the AI understand your company better
               </CardDescription>
             </CardHeader>
@@ -426,13 +426,13 @@ export function ChatbotCreator({ onChatbotCreated }: ChatbotCreatorProps) {
 
         {/* Personality & Behavior */}
         <SlideUp>
-          <Card>
+          <Card className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-slate-900 dark:text-slate-100">
                 <Wand2 className="w-5 h-5 text-emerald-500" />
                 Personality & Behavior
               </CardTitle>
-              <CardDescription>
+              <CardDescription className="text-slate-600 dark:text-slate-400">
                 Define how your chatbot should interact with users
               </CardDescription>
             </CardHeader>
@@ -538,7 +538,7 @@ export function ChatbotCreator({ onChatbotCreated }: ChatbotCreatorProps) {
             <Button
               type="submit"
               disabled={isCreating}
-              className="bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white px-8 py-3 text-lg"
+              className="bg-gradient-to-r from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700 text-white px-8 py-3 text-lg"
             >
               {isCreating ? (
                 <>

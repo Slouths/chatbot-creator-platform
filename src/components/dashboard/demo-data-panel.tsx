@@ -22,9 +22,11 @@ function DemoDataPanelContent() {
   const convexConfigured = process.env.NEXT_PUBLIC_CONVEX_URL !== undefined && 
                           process.env.NEXT_PUBLIC_CONVEX_URL !== "https://demo.convex.dev"
 
-  // Initialize Convex mutations
-  const seedDemoData = useMutation(api.seed.seedDemoData)
-  const clearDemoData = useMutation(api.seed.clearDemoData)
+  // Initialize Convex mutations (temporarily disabled to fix React hooks error)
+  // const seedDemoData = useMutation(api.seed.seedDemoData)
+  // const clearDemoData = useMutation(api.seed.clearDemoData)
+  const seedDemoData = null
+  const clearDemoData = null
 
   const handleSeedData = async () => {
     if (!convexConfigured) {
@@ -32,6 +34,15 @@ function DemoDataPanelContent() {
         type: 'seed',
         success: false,
         message: 'Convex database is not configured. Please set NEXT_PUBLIC_CONVEX_URL environment variable.'
+      })
+      return
+    }
+
+    if (!seedDemoData) {
+      setLastAction({
+        type: 'seed',
+        success: false,
+        message: 'Demo data functionality is temporarily disabled'
       })
       return
     }
@@ -67,6 +78,15 @@ function DemoDataPanelContent() {
       return
     }
 
+    if (!clearDemoData) {
+      setLastAction({
+        type: 'clear',
+        success: false,
+        message: 'Demo data functionality is temporarily disabled'
+      })
+      return
+    }
+
     if (!confirm('Are you sure you want to clear all demo data? This action cannot be undone.')) {
       return
     }
@@ -93,38 +113,38 @@ function DemoDataPanelContent() {
   }
 
   return (
-    <Card className="border-orange-200 dark:border-orange-800 bg-orange-50/50 dark:bg-orange-950/20">
+    <Card className="border-indigo-200 dark:border-indigo-800 bg-indigo-50/50 dark:bg-indigo-950/20">
       <CardHeader>
-        <CardTitle className="flex items-center gap-2 text-orange-900 dark:text-orange-100">
-          <Database className="w-5 h-5 text-orange-600" />
+        <CardTitle className="flex items-center gap-2 text-indigo-900 dark:text-indigo-100">
+          <Database className="w-5 h-5 text-indigo-600" />
           Demo Data Management
         </CardTitle>
-        <CardDescription className="text-orange-700 dark:text-orange-300">
+        <CardDescription className="text-indigo-700 dark:text-indigo-300">
           Seed or clear demo data for testing and demonstration purposes
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         {/* Convex Configuration Warning */}
         {!convexConfigured && (
-          <div className="p-4 bg-yellow-100/50 dark:bg-yellow-900/30 rounded-lg border border-yellow-200 dark:border-yellow-800">
+          <div className="p-4 bg-blue-100/50 dark:bg-blue-900/30 rounded-lg border border-blue-200 dark:border-blue-800">
             <div className="flex items-center gap-2 mb-2">
-              <AlertCircle className="w-4 h-4 text-yellow-600" />
-              <h4 className="font-medium text-yellow-900 dark:text-yellow-100">
+              <AlertCircle className="w-4 h-4 text-blue-600" />
+              <h4 className="font-medium text-blue-900 dark:text-blue-100">
                 Database Not Configured
               </h4>
             </div>
-            <p className="text-sm text-yellow-800 dark:text-yellow-200">
+            <p className="text-sm text-blue-800 dark:text-blue-200">
               Convex database is not configured. Demo data features require setting the NEXT_PUBLIC_CONVEX_URL environment variable.
             </p>
           </div>
         )}
 
         {/* Demo Data Info */}
-        <div className="p-4 bg-orange-100/50 dark:bg-orange-900/30 rounded-lg">
-          <h4 className="font-medium text-orange-900 dark:text-orange-100 mb-2">
+        <div className="p-4 bg-indigo-100/50 dark:bg-indigo-900/30 rounded-lg">
+          <h4 className="font-medium text-indigo-900 dark:text-indigo-100 mb-2">
             What gets created:
           </h4>
-          <ul className="text-sm text-orange-800 dark:text-orange-200 space-y-1">
+          <ul className="text-sm text-indigo-800 dark:text-indigo-200 space-y-1">
             <li>• 1 demo organization (Pro plan)</li>
             <li>• 3 sample chatbots (Customer Support, Sales, FAQ)</li>
             <li>• 85+ sample conversations across different platforms</li>
@@ -137,7 +157,7 @@ function DemoDataPanelContent() {
           <Button
             onClick={handleSeedData}
             disabled={isSeeding || isClearing || !convexConfigured}
-            className="bg-orange-600 hover:bg-orange-700 text-white disabled:opacity-50"
+            className="bg-indigo-600 hover:bg-indigo-700 text-white disabled:opacity-50"
           >
             {isSeeding ? (
               <>
@@ -156,7 +176,7 @@ function DemoDataPanelContent() {
             onClick={handleClearData}
             disabled={isSeeding || isClearing || !convexConfigured}
             variant="outline"
-            className="border-orange-300 text-orange-700 hover:bg-orange-100 dark:border-orange-700 dark:text-orange-300 dark:hover:bg-orange-900/30 disabled:opacity-50"
+            className="border-indigo-300 text-indigo-700 hover:bg-indigo-100 dark:border-indigo-700 dark:text-indigo-300 dark:hover:bg-indigo-900/30 disabled:opacity-50"
           >
             {isClearing ? (
               <>
@@ -197,7 +217,7 @@ function DemoDataPanelContent() {
         )}
 
         {/* Warning */}
-        <div className="text-xs text-orange-600 dark:text-orange-400 text-center">
+        <div className="text-xs text-indigo-600 dark:text-indigo-400 text-center">
           ⚠️ Demo data is for testing only. Clear it before using in production.
         </div>
       </CardContent>
